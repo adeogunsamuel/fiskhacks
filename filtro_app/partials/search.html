@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1 class="text-center" style="color:darkred;font-family:fantasy">Filtro <br/></h1> 
+      <form novalidate name="searchForm" class="form-horizontal" role="form" ng-submit="submitForm()">
+      <div class="form-group has-feedback has-warning" ng-class="{
+        'has-warning': searchForm.searchTerm.$pristine,
+        'has-error': searchForm.searchTerm.$invalid && !searchForm.searchTerm.$pristine,
+        'has-success': searchForm.searchTerm.$valid
+      }">
+        <label class="control-label col-sm-3" for="searchTerm"></label>
+        <div class="col-sm-6">
+          <input name="searchTerm" type="text" ng-model="searchData.term" class="form-control ng-pristine ng-invalid-required" id="searchTerm" placeholder="Enter Topic of Interest" required ng-disabled="gettingTweets">
+          <span ng-show="searchForm.searchTerm.$pristine" class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
+          <span ng-show="searchForm.searchTerm.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+          <span ng-show="searchForm.searchTerm.$invalid && !searchForm.searchTerm.$pristine" class="glyphicon glyphicon-remove form-control-feedback"></span>
+        </div>
+      </div>
+      <div class="form-group">        
+        <div class="col-sm-offset-5 col-sm-4">
+          <button ng-hide="gettingListings" ng-disabled="!searchForm.$valid" type="submit" class="btn btn-success">
+            <span class="glyphicon glyphicon-search"></span> Search
+          </button>
+          <div ng-show="gettingTweets" style="cursor:default" class="btn btn-success" disabled>
+            loading <i class="fa fa-spinner fa-spin"></i>
+          </div>
+        </div>
+      </div>
+      </form> 
+    </div>
+  <div class="jumbotron">
+  </div>
+</div> 
