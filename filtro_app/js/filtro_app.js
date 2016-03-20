@@ -28,16 +28,33 @@ var app = angular.module('FiltroApp', ['ngRoute', 'ui.bootstrap'])
 	'url' : 'http://localhost:9393/'
 })
 
+.factory('trendsFactory', function(){
+	var factory = {};
+	var trends = [];
+	factory.setTopTrends = function(){
+		// Replace in the future
+		trends = ['tech', 'breaking news', 'sports', 'entertainment']
+	}
+
+	factory.getTopTrends = function() {
+		factory.setTopTrends();
+		return trends;
+	};
+
+	return factory;
+})
+
 .factory('tweetFactory', ['$http', '$location',function($http, $location){
 	var factory = {};
 	var tweetsAndAccountInfo = [];
 	
-	factory.setTweets = function(tweetsAndAccountInfo) {
-		tweetsAndAccountInfo = tweetsAndAccountInfo;
+	factory.setTweets = function(tweetsInfo) {
+		tweetsAndAccountInfo = tweetsInfo;
 		$location.path('/result')
 	};
 	
 	factory.getTweets = function(){
+		console.log(tweetsAndAccountInfo);
 		return tweetsAndAccountInfo;
 	};
 
@@ -65,9 +82,13 @@ var app = angular.module('FiltroApp', ['ngRoute', 'ui.bootstrap'])
 	};
 }])
 
-.controller('resultController', ['$scope', '$location', 'tweetFactory', function($scope, $location, tweetFactory){
+.controller('resultController', ['$scope', '$location', 'tweetFactory', 'trendsFactory', function($scope, $location, tweetFactory, trendsFactory){
 	$scope.tweetsAndAccountInfo = [];
+	$scope.trends = []
 	$scope.init = function () {
+		$scope.trends = trendsFactory.getTopTrends();
 		$scope.tweetsAndAccountInfo = tweetFactory.getTweets();
+		console.log($scope.tweetsAndAccountInfo);
 	}
+	$scope.init();
 }])

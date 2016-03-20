@@ -12,43 +12,42 @@
 			</div>
 		</form>
 		<div class="row">
-			<div class="col-sm-6">
+			<div class="col-sm-9">
 				<ul>
 					<li ng-repeat="eachAccount in tweetsAndAccountInfo| filter:tweetsAndAccountInfo.search">
-						<alert>
-							<!--<img ng-src="{{item.volumeInfo.imageLinks.thumbnail}}" class="img-thumbnail" alt="Thumbnail" width="40">-->
-							<div class="row">
-							<!--	
-							<div class="col-sm-1">
-								<input class="checkbox" type="checkbox" ng-model="checkedListing[item.address]" value="">
+						<span ng-repeat="tweet in eachAccount.tweets">
+							<div class="alert alert-default" style="border-bottom-color:white">
+								<!--<img ng-src="{{item.volumeInfo.imageLinks.thumbnail}}" class="img-thumbnail" alt="Thumbnail" width="40">-->
+								<div class="row">
+								<!--	
+								<div class="col-sm-1">
+									<input class="checkbox" type="checkbox" ng-model="checkedListing[item.address]" value="">
+								</div>
+								-->
+								<div class="col-sm-2">
+									<a class="thumbnail" alt="Thumbnail" width="20">
+								      <img ng-src="{{eachAccount.thumbnail}}">
+								    </a>
+								</div>
+								<div class="col-sm-9">
+									{{eachAccount.name}} <br/> <br/>
+
+									<em>{{tweet}}</em> <br/>
+								</div>
 							</div>
-							-->
-							<div class="col-sm-3">
-								<a ng-click="getImages(item.property_details_url)" class="thumbnail" alt="Thumbnail" width="30">
-							      <img ng-show="item.property_image_url.length !== 0" ng-src="{{item.property_image_url}}">
-							      <img ng-show="item.property_image_url.length === 0" src="img/no_image.png">
-							    </a>
-							</div>
-							<div class="col-sm-9">
-								{{item.address}} <br/> 
-								<em>{{item.price}}</em> <br/>
-							</div>
-							</div>
-						</alert>
+							</span>
+						</div>
 					</li>
 				</ul>
 			</div>
-			<div class="col-sm-6">
+			<div class="col-sm-3">
 				<h3 class="col-sm-offset-1" style="font-family:fantasy"><i class="fa fa-bolt"></i> Matched Users</h3>
 			    <hr style="width: 100%; color: black; height: 1px; background-color:gray;" />
-				<div class="panel panel-default panel-body" ng-repeat="trend in trends">
-						<div class="row">
-						<div class="col-sm-8">
-			        	<span style="color:dimgray">{{trend.name}} {{user.lastname}}</span> <br/>
-			        	<span style="color:dimgray">Interests: {{user.interests}}</span>
-			        	</div>
-			        	</div>
-			    </div>
+				<ul class="list-unstyled" style="font-family:fantasy">
+		    		<li style="margin:10px 0 0 20px;" ng-repeat="trend in trends">
+		    			* <a style="cursor:pointer" ng-click="getInterestFromTrend(trend.interest)">{{trend}}</a>
+		    		</li>
+		    	</ul>
 			</div>
 		</div>
 	</div>
