@@ -28,16 +28,17 @@ var app = angular.module('FiltroApp', ['ngRoute', 'ui.bootstrap'])
 	'url' : 'http://localhost:9393/'
 })
 
-.factory('tweetFactory', ['$http', function($http){
+.factory('tweetFactory', ['$http', '$location',function($http, $location){
 	var factory = {};
-	var tweets = [];
+	var tweetsAndAccountInfo = [];
 	
-	factory.setTweets = function(term) {
-		
+	factory.setTweets = function(tweetsAndAccountInfo) {
+		tweetsAndAccountInfo = tweetsAndAccountInfo;
+		$location.path('/result')
 	};
 	
 	factory.getTweets = function(){
-		return tweets;
+		return tweetsAndAccountInfo;
 	};
 
 	return factory;
@@ -65,5 +66,8 @@ var app = angular.module('FiltroApp', ['ngRoute', 'ui.bootstrap'])
 }])
 
 .controller('resultController', ['$scope', '$location', 'tweetFactory', function($scope, $location, tweetFactory){
-
+	$scope.tweetsAndAccountInfo = [];
+	$scope.init = function () {
+		$scope.tweetsAndAccountInfo = tweetFactory.getTweets();
+	}
 }])

@@ -4,7 +4,7 @@
 			<div class="row">
 				<div class="col-sm-6">
 					<div class="form-group has-feedback"> 
-						<input class="form-control" type="text" placeholder="Filter your result" ng-model="listings.search" />
+						<input class="form-control" type="text" placeholder="Filter your result" ng-model="tweetsAndAccountInfo.search" />
 						<span class="glyphicon glyphicon-search form-control-feedback"></span>
 		            	<br/><br/>
 					</div>
@@ -14,8 +14,8 @@
 		<div class="row">
 			<div class="col-sm-6">
 				<ul>
-					<li ng-repeat="item in listings | orderBy:item.price | filter:listings.search">
-						<blockquote>
+					<li ng-repeat="eachAccount in tweetsAndAccountInfo| filter:tweetsAndAccountInfo.search">
+						<alert>
 							<!--<img ng-src="{{item.volumeInfo.imageLinks.thumbnail}}" class="img-thumbnail" alt="Thumbnail" width="40">-->
 							<div class="row">
 							<!--	
@@ -34,22 +34,18 @@
 								<em>{{item.price}}</em> <br/>
 							</div>
 							</div>
-						</blockquote>
+						</alert>
 					</li>
 				</ul>
 			</div>
 			<div class="col-sm-6">
 				<h3 class="col-sm-offset-1" style="font-family:fantasy"><i class="fa fa-bolt"></i> Matched Users</h3>
 			    <hr style="width: 100%; color: black; height: 1px; background-color:gray;" />
-				<div class="panel panel-default panel-body" ng-repeat="user in matchedUsers">
+				<div class="panel panel-default panel-body" ng-repeat="trend in trends">
 						<div class="row">
 						<div class="col-sm-8">
-			        	<span style="color:dimgray">{{user.firstname}} {{user.lastname}}</span> <br/>
+			        	<span style="color:dimgray">{{trend.name}} {{user.lastname}}</span> <br/>
 			        	<span style="color:dimgray">Interests: {{user.interests}}</span>
-			        	</div>
-			        	<div class="col-sm-4">
-			        		<span style="cursor:pointer" ng-click="notifyMatch()" class="glyphicon glyphicon-bell"></span>
-			        		<button class="btn btn-xs" ng-click="open()"> <span class="glyphicon glyphicon-message"></span> Message </button>
 			        	</div>
 			        	</div>
 			    </div>

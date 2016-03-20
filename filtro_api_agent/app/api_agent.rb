@@ -1,9 +1,6 @@
 require 'sinatra'
 require 'json'
 require '../lib/crawler'
-require 'geocoder'
-# require 'active_record'
-# require 'sinatra/activerecord'
 
 before do
   content_type :json
@@ -21,7 +18,7 @@ get '/getTweets' do
   crawler = CrawlerHelper.new
   response = crawler.crawl("tech")
   puts response
-  return response
+  response.to_json
 end
 
 post '/getTweets' do

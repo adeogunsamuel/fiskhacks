@@ -5,3 +5,5 @@ gem 'sinatra'
 #gem 'mysql'
 #Crawler gems
 gem 'nokogiri'
+
+gem 'unidecoder'
