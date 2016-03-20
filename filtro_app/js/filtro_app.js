@@ -36,6 +36,20 @@ var app = angular.module('FiltroApp', ['ngRoute', 'ui.bootstrap', 'ngSanitize'])
   delete $httpProvider.defaults.headers.common['X-Requested-With'];
 })
 
+.run(['$route', '$rootScope', '$location', function ($route, $rootScope, $location) {
+    var original = $location.path;
+    $location.path = function (path, reload) {
+        if (reload === false) {
+            var lastRoute = $route.current;
+            var un = $rootScope.$on('$locationChangeSuccess', function () {
+                $route.current = lastRoute;
+                un();
+            });
+        }
+        return original.apply($location, [path]);
+    };
+}])
+
 .constant('API_INFO', {
 	'url' : 'http://localhost:9393'
 })
@@ -61,7 +75,7 @@ var app = angular.module('FiltroApp', ['ngRoute', 'ui.bootstrap', 'ngSanitize'])
 	var tweetsAndAccountInfo = [];
 	
 	factory.retrieveTweets = function(searchTerm) {
-		return $http.post(API_INFO.url + '/getTweets', {'searchTerm' : searchTerm})
+		return $http.post(API_INFO.url + '/getTweets', {'searchTerm' : searchTerm}, {cache: true})
 	};
 
 	factory.setTweets = function(tweetsInfo){
@@ -141,7 +155,7 @@ var app = angular.module('FiltroApp', ['ngRoute', 'ui.bootstrap', 'ngSanitize'])
 
 .controller('topResultController', ['$location','$scope', 'trendsFactory', 'tweetFactory', '$routeParams', function($location, $scope, trendsFactory, tweetFactory, $routeParams){
 	$scope.tweetsAndAccountInfo = [];
-	$scope.trends = []
+	$scope.trends = [];
 	$scope.trend;
 	$scope.activeTab = {};
 	$scope.loadingTweets = true;
@@ -171,6 +185,7 @@ var app = angular.module('FiltroApp', ['ngRoute', 'ui.bootstrap', 'ngSanitize'])
 			$scope.tweetsAndAccountInfo = tweetFactory.getTweets();
 			console.log($scope.tweetsAndAccountInfo);
 			$scope.loadingTweets = false;
+			$location.path("/top_result/" + trend, false)
 		})
 	}
 }])
