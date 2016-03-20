@@ -1,0 +1,140 @@
+<div class="container" >
+	<div class="jumbotron">
+		<uib-tabset active="activeForm">
+	      <uib-tab active="activeTab['tech']" heading="Technology" select="getTweets('tech')">
+	        <div class="row">
+				<div class="col-sm-12">
+					<ul>
+						<div ng-show="trend && loadingTweets" style="cursor:default" class="col-xs-offset-4" disabled>
+							<br/>
+							<button class="btn btn-success col-xs-4">
+					            loading <i class="fa fa-spinner fa-spin"></i>
+					        </button>
+				          </div>
+						<li ng-repeat="eachAccount in tweetsAndAccountInfo| filter:tweetsAndAccountInfo.search">
+							<span ng-repeat="tweet in eachAccount.tweets">
+								<div class="alert alert-default" style="border-bottom-color:white">
+									<div class="row">
+									<div class="col-sm-2">
+										<a class="thumbnail" alt="Thumbnail" width="20">
+									      <img ng-src="{{eachAccount.thumbnail}}">
+									    </a>
+									</div>
+									<div class="col-sm-9">
+										{{eachAccount.name}} <br/> <br/>
+
+										<em ng-bind-html="tweet"></em> <br/>
+										
+									</div>
+								</div>
+								</span>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+	      </uib-tab>
+	      <uib-tab active="activeTab['sports']" heading="Sports" select="getTweets('sports')">
+	        <div class="row">
+				<div class="col-sm-12">
+					<ul>
+						<div ng-show="loadingTweets" style="cursor:default" class="col-xs-offset-4" disabled>
+							<br/>
+							<button class="btn btn-success col-xs-4">
+					            loading <i class="fa fa-spinner fa-spin"></i>
+					        </button>
+				          </div>
+						<li ng-repeat="eachAccount in tweetsAndAccountInfo| filter:tweetsAndAccountInfo.search">
+							<span ng-repeat="tweet in eachAccount.tweets">
+								<div class="alert alert-default" style="border-bottom-color:white">
+									<div class="row">
+									<div class="col-sm-2">
+										<a class="thumbnail" alt="Thumbnail" width="20">
+									      <img ng-src="{{eachAccount.thumbnail}}">
+									    </a>
+									</div>
+									<div class="col-sm-9">
+										{{eachAccount.name}} <br/> <br/>
+
+										<em ng-bind-html="tweet"></em> <br/>
+										
+									</div>
+								</div>
+								</span>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+	      </uib-tab>
+	      <uib-tab active="activeTab['breaking news']" heading="Breaking News" select="getTweets('breaking news')">
+	        <div class="row">
+				<div class="col-sm-12">
+					<ul>
+						<div ng-show="loadingTweets" style="cursor:default" class="col-xs-offset-4" disabled>
+							<br/>
+							<button class="btn btn-success col-xs-4">
+					            loading <i class="fa fa-spinner fa-spin"></i>
+					        </button>
+				          </div>
+						<li ng-repeat="eachAccount in tweetsAndAccountInfo| filter:tweetsAndAccountInfo.search">
+							<span ng-repeat="tweet in eachAccount.tweets">
+								<div class="alert alert-default" style="border-bottom-color:white">
+									<div class="row">
+									<div class="col-sm-2">
+										<a class="thumbnail" alt="Thumbnail" width="20">
+									      <img ng-src="{{eachAccount.thumbnail}}">
+									    </a>
+									</div>
+									<div class="col-sm-9">
+										{{eachAccount.name}} <br/> <br/>
+
+										<em ng-bind-html="tweet"></em> <br/>
+										
+									</div>
+								</div>
+								</span>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+	      </uib-tab>
+	      <uib-tab active="activeTab['entertainment']" heading="Entertainment" select="getTweets('entertainment')">
+	        <div class="row">
+				<div class="col-sm-12">
+					<ul>
+						<div ng-show="loadingTweets" style="cursor:default" class="col-xs-offset-4" disabled>
+							<br/>
+							<button class="btn btn-success col-xs-4">
+					            loading <i class="fa fa-spinner fa-spin"></i>
+					        </button>
+				          </div>
+						<li ng-repeat="eachAccount in tweetsAndAccountInfo| filter:tweetsAndAccountInfo.search">
+							<span ng-repeat="tweet in eachAccount.tweets">
+								<div class="alert alert-default" style="border-bottom-color:white">
+									<div class="row">
+									<div class="col-sm-2">
+										<a class="thumbnail" alt="Thumbnail" width="20">
+									      <img ng-src="{{eachAccount.thumbnail}}">
+									    </a>
+									</div>
+									<div class="col-sm-9">
+										{{eachAccount.name}} <br/> <br/>
+
+										<em ng-bind-html="tweet"></em> <br/>
+										
+									</div>
+								</div>
+								</span>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+	      </uib-tab>
+
+	    </uib-tabset>
+		</div>
+	</div>
+</div>

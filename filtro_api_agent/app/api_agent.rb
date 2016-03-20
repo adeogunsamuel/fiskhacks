@@ -1,6 +1,6 @@
 require 'sinatra'
 require 'json'
-require './lib/crawler'
+require '../lib/crawler'
 
 before do
   content_type :json

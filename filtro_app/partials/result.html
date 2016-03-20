@@ -14,6 +14,12 @@
 		<div class="row">
 			<div class="col-sm-9">
 				<ul>
+					<div ng-show="loadingTweets" style="cursor:default" class="col-xs-offset-4" disabled>
+						<br/>
+						<button class="btn btn-success col-xs-4">
+				            loading <i class="fa fa-spinner fa-spin"></i>
+				        </button>
+			          </div>
 					<li ng-repeat="eachAccount in tweetsAndAccountInfo| filter:tweetsAndAccountInfo.search">
 
 						<span ng-repeat="tweet in eachAccount.tweets">
@@ -43,11 +49,11 @@
 				</ul>
 			</div>
 			<div class="col-sm-3">
-				<h3 class="col-sm-offset-1" style="font-family:fantasy"><i class="fa fa-bolt"></i> Matched Users</h3>
+				<h3 class="col-sm-offset-1" style="font-family:fantasy"><i class="fa fa-bolt"></i> Top Trends</h3>
 			    <hr style="width: 100%; color: black; height: 1px; background-color:gray;" />
 				<ul class="list-unstyled" style="font-family:fantasy">
 		    		<li style="margin:10px 0 0 20px;" ng-repeat="trend in trends">
-		    			* <a style="cursor:pointer" ng-click="getInterestFromTrend(trend.interest)">{{trend}}</a>
+		    			* <a style="cursor:pointer" ng-click="getTrend(trend)">{{trend}}</a>
 		    		</li>
 		    	</ul>
 			</div>

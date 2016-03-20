@@ -1,5 +1,6 @@
 <div class="container">
-  <div class="jumbotron">
+  <div class="jumbotron row">
+    <div class="col-sm-9">
     <h1 class="text-center" style="color:darkred;font-family:fantasy">Filtro <br/></h1> 
       <form novalidate name="searchForm" class="form-horizontal" role="form" ng-submit="submitForm()">
       <div class="form-group has-feedback has-warning" ng-class="{
@@ -7,9 +8,9 @@
         'has-error': searchForm.searchTerm.$invalid && !searchForm.searchTerm.$pristine,
         'has-success': searchForm.searchTerm.$valid
       }">
-        <label class="control-label col-sm-3" for="searchTerm"></label>
-        <div class="col-sm-6">
-          <input name="searchTerm" type="text" ng-model="searchData.term" class="form-control ng-pristine ng-invalid-required" id="searchTerm" placeholder="Enter Topic of Interest" required ng-disabled="gettingTweets">
+        <label class="control-label col-sm-2" for="searchTerm"></label>
+        <div class="col-sm-8">
+          <input name="searchTerm" type="text" ng-model="searchData.term" class="form-control ng-pristine ng-invalid-required" id="searchTerm" placeholder="Search topic of Interest" required ng-disabled="gettingTweets">
           <span ng-show="searchForm.searchTerm.$pristine" class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
           <span ng-show="searchForm.searchTerm.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
           <span ng-show="searchForm.searchTerm.$invalid && !searchForm.searchTerm.$pristine" class="glyphicon glyphicon-remove form-control-feedback"></span>
@@ -27,6 +28,16 @@
       </div>
       </form> 
     </div>
+    <div class="col-sm-3">
+    <h3 class="col-sm-offset-1" style="font-family:fantasy"><i class="fa fa-bolt"></i> Top Trends</h3>
+      <hr style="width: 80%; color: black; height: 1px; background-color:gray;" />
+      <ul class="list-unstyled" style="font-family:fantasy">
+        <li style="margin:10px 0 0 20px;" ng-repeat="trend in trends">
+          * <a style="cursor:pointer" ng-click="getTrend(trend)">{{trend}}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
   <div class="jumbotron">
   </div>
 </div> 
