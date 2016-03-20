@@ -1,4 +1,4 @@
-var app = angular.module('FiltroApp', ['ngRoute', 'ui.bootstrap'])
+var app = angular.module('FiltroApp', ['ngRoute', 'ui.bootstrap', 'ngSanitize'])
 
 .config(['$routeProvider', function($routeProvider){
 	$routeProvider

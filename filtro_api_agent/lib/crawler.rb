@@ -1,6 +1,7 @@
   require 'open-uri'
   require 'nokogiri'
   require 'unidecoder'
+  require 'rinku'
 
   class CrawlerHelper
     BASE_URL = "https://www.twitter.com/"
@@ -28,7 +29,17 @@
       thumbnail = each_account.css('img.ProfileAvatar-image').attr('src').text
       tweets = []
       each_account.css('p.TweetTextSize.TweetTextSize--16px.js-tweet-text.tweet-text').map do |each_tweet|
-        tweets.push(each_tweet.text.to_ascii)
+
+        tweet = each_tweet.text.to_ascii
+        if tweet.include? 'pic.twitter.com'
+          tweet.gsub! 'pic.twitter.com', 'https://pic.twitter.com'
+        end
+        tweet = Rinku.auto_link(tweet, :all)
+        if tweet.include? '<a'
+          tweet.gsub! '<a', '<a target="new"'
+        end
+        tweets.push(tweet)
+
       end
       accounts_result[i] = {"name" => name, "tweets" => tweets, "thumbnail" => thumbnail}
       

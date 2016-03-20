@@ -7,3 +7,7 @@ gem 'sinatra'
 gem 'nokogiri'
 
 gem 'unidecoder'
+
+gem 'shotgun'
+
+gem 'rinku'
